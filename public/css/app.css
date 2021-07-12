@@ -11098,6 +11098,9 @@ a.text-dark:focus {
 .menu:hover {
     background-color: #3b4248;
 }
+.menu:hover > a {
+    text-decoration: none;
+}
 
 .test2 {
     margin-left: -100px;

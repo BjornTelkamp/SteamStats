@@ -73,8 +73,9 @@ class GamesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Application|Factory|View|Response
+     * @param  Request  $request
+     * @return view
+     * @return RedirectResponse
      */
     public function sortGenre(Request $request){
 
@@ -143,7 +144,7 @@ class GamesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @return Application|Factory|View|Response
      */
     public function search(Request $request)
     {

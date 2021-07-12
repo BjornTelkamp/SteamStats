@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -17,44 +18,32 @@ class ProfileController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|View|Response
+     * @return Application|Factory|View|RedirectResponse
      */
 
 
     public function index(Request $request)
     {
-
         $id = $request->id;
-        $data = new Profile;
-        $data = $data->getProfileSummary($id);
+        $data = Profile::getProfileSummary($id);
 
+        $banInfo = Profile::getBanInfo($id);
 
-        $banInfo = new profile;
-        $banInfo = $banInfo->getBanInfo($id);
+        $recentlyPlayedGames = Profile::getRecentlyPlayedGames($id);
 
-        $recentlyPlayedGames = new profile;
-        $recentlyPlayedGames = $recentlyPlayedGames->getRecentlyPlayedGames($id);
+        $playerLevel = Profile::getPlayerLevel($id);
 
-        $playerLevel = new profile;
-        $playerLevel = $playerLevel->getPlayerLevel($id);
+        $profileBackground = Profile::getProfileBackground($id);
 
-        $profileBackground = new profile;
-        $profileBackground = $profileBackground->getProfileBackground($id);
+        $resolvedurl = Profile::resolveCustomURL($id);
 
-        $resolvedurl = new profile;
-        $resolvedurl = $resolvedurl->resolveCustomURL($id);
+        $customFrame = Profile::getAvatarFrame($id);
 
-        $customFrame = new profile;
-        $customFrame = $customFrame->getAvatarFrame($id);
+        $ownedGames = Profile::getOwnedGames($id);
 
-        $ownedGames = new profile;
-        $ownedGames = $ownedGames->getOwnedGames($id);
+        $ownedBadges = Profile::getBadges($id);
 
-        $ownedBadges = new profile;
-        $ownedBadges = $ownedBadges->getBadges($id);
-
-        $friendList = new profile;
-        $friendList = $friendList->getFriendList($id);
+        $friendList = Profile::getFriendList($id);
 
         $playtimeForever = 0;
         if(isset($ownedGames['response']['games'])) {
@@ -146,32 +135,23 @@ class ProfileController extends Controller
             $id = $request->id;
         }
 
-        $data = new Profile;
-        $data = $data->getProfileSummary($id);
+        $data = Profile::getProfileSummary($id);
 
-        $banInfo = new profile;
-        $banInfo = $banInfo->getBanInfo($id);
+        $banInfo = profile::getBanInfo($id);
 
-        $recentlyPlayedGames = new profile;
-        $recentlyPlayedGames = $recentlyPlayedGames->getRecentlyPlayedGames($id);
+        $recentlyPlayedGames = Profile::getRecentlyPlayedGames($id);
 
-        $playerLevel = new profile;
-        $playerLevel = $playerLevel->getPlayerLevel($id);
+        $playerLevel = Profile::getPlayerLevel($id);
 
-        $profileBackground = new profile;
-        $profileBackground = $profileBackground->getProfileBackground($id);
+        $profileBackground = Profile::getProfileBackground($id);
 
-        $customFrame = new profile;
-        $customFrame = $customFrame->getAvatarFrame($id);
+        $customFrame = Profile::getAvatarFrame($id);
 
-        $ownedGames = new profile;
-        $ownedGames = $ownedGames->getOwnedGames($id);
+        $ownedGames = Profile::getOwnedGames($id);
 
-        $ownedBadges = new profile;
-        $ownedBadges = $ownedBadges->getBadges($id);
+        $ownedBadges = Profile::getBadges($id);
 
-        $friendList = new profile;
-        $friendList = $friendList->getFriendList($id);
+        $friendList = Profile::getFriendList($id);
 
 // PROFILE NOT FOUND OR PRIVATE
 
